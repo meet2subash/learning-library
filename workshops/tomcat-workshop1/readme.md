@@ -71,11 +71,11 @@ Although the diagram shows a private subnet for the Tomcat servers, the scripts 
 
 2.	Stop the tomcat by using below cmd
 
-    systemctl stop tomcat
+       sudo systemctl stop tomcat
 
-3.	Copied SimpleDB.war to /var/lib/tomcat/webapps/ dir
+3.	Copied SimpleDB.war to `/var/lib/tomcat/webapps/` dir
 
-4.	Added configuration changes to server.xml,web.xml,context.xml files located under /usr/share/tomcat/conf dir 
+4.	Added configuration changes to server.xml,web.xml,context.xml files located under `/usr/share/tomcat/conf` dir 
  
  Add below tag parelle to GlobalNamingResources in Server.xml
  
@@ -109,18 +109,19 @@ Add below given config at last in context.xml
         type="javax.sql.DataSource"/>
  
  
-5.	Added lib tomcat-dbcp-7.0.76.jar to  /usr/share/java/
+5.	Added lib `tomcat-dbcp-7.0.76.jar` to  `/usr/share/java/`
 
 6.	Start Tomcat server using below given cmd:
        
        sudo systemctl start tomcat
        
 7.	Test your application deployment at vm level using below given url:
-    
+    ````
        http://<IP>:<Port>/SimpleDB/
-    
+    ````
 8.	Repeat the steps 1-7 for another tomcat vm as well.
 
 9.	Once migration of SimpleDB war file done on both tomcat instance, you can validate end to end deployment using LB url 
-
+    ````
        http://<Load balance IP>/SimpleDB/
+    ````
