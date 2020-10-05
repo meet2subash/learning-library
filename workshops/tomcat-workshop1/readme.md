@@ -33,12 +33,14 @@ region = "<oci_region>"
 # Compartment
 compartment_ocid = "<compartment_ocid>"
 ````
+
 Deploy:
+
     terraform init
     terraform plan
     terraform apply
 
-##Add confirmation terraform screen here
+## Add confirmation terraform screen here
 
 ## Testing your deployment
 After the deployment is finished, you can test that your tomcat was deployed correctly and can access the database going to the urls:
@@ -48,23 +50,36 @@ http://<load balancer IP>/JDBCSample/UCPServlet
 `````
 ## Destroy the Deployment
 When you no longer need the deployment, you can run this command to destroy it:
-terraform destroy
+
+    terraform destroy
+    
 ## Tomcat-Autonomous Database Architecture
+
 ![](./images/architecture-deploy-tomcat.png)
+
 Although the diagram shows a private subnet for the Tomcat servers, the scripts are provisioning them on a public subnet as there is no bastion to allow access to the servers.
+
+
 ## Reference Architecture
+
 - [Deploy Apache Tomcat connected to an autonomous database](https://docs.oracle.com/en/solutions/deploy-tomcat-adb)
  
 
-Migration of application from on premise to OCI cloud
+## Migration of application from on premise to OCI cloud
 
 1.	Do ssh to tomcat01 vm’s (refer to OCI console for vm’s public IP)
+
 2.	Stop the tomcat by using below cmd
-systemctl stop tomcat
+
+    systemctl stop tomcat
+
 3.	Copied SimpleDB.war to /var/lib/tomcat/webapps/ dir
-4.	Added config changes to (/usr/share/tomcat/conf)server.xml,web.xml,context.xml
+
+4.	Added configuration changes to server.xml,web.xml,context.xml files located under /usr/share/tomcat/conf dir 
+ 
  Add below tag parelle to GlobalNamingResources in Server.xml
- <GlobalNamingResources>
+ 
+    <GlobalNamingResources>
      <Resource name="jdbc/JDBCConnectionDS"
           global="jdbc/JDBCConnectionDS"
           auth="Container"
@@ -76,10 +91,11 @@ systemctl stop tomcat
           url="jdbc:oracle:thin:@mydb_high?TNS_ADMIN=/etc/tomcat/wallet"
           maxActive="15"
           maxIdle="3"/>
-  </GlobalNamingResources>
+    </GlobalNamingResources>
  
-At last add below config to web.xml
-<resource-ref>
+At last add below configuration to web.xml
+
+       <resource-ref>
                 <description>JDBCConnection</description>
                 <res-ref-name>jdbc/JDBCConnectionDS</res-ref-name>
                 <res-type>javax.sql.DataSource</res-type>
@@ -87,17 +103,24 @@ At last add below config to web.xml
         </resource-ref>
  
 Add below given config at last in context.xml
-<ResourceLink name="jdbc/JDBCConnectionDS"
-    global="jdbc/JDBCConnectionDS"
-    type="javax.sql.DataSource"/>
+
+    <ResourceLink name="jdbc/JDBCConnectionDS"
+        global="jdbc/JDBCConnectionDS"
+        type="javax.sql.DataSource"/>
  
  
 5.	Added lib tomcat-dbcp-7.0.76.jar to  /usr/share/java/
-6.	Start Tomcat server sing below given cmd –
-sudo systemctl start tomcat
-7.	Test your application deployment using below given url
-For vm level deployment testing
-http://<IP>:<Port>/SimpleDB/
+
+6.	Start Tomcat server using below given cmd:
+       
+       sudo systemctl start tomcat
+       
+7.	Test your application deployment at vm level using below given url:
+    
+       http://<IP>:<Port>/SimpleDB/
+    
 8.	Repeat the steps 1-7 for another tomcat vm as well.
-9.	Once migration of SimpleDB war file done on both tomcat instance, you can validate end to end deployment using LB url
-http://<Load balance IP>/SimpleDB/
+
+9.	Once migration of SimpleDB war file done on both tomcat instance, you can validate end to end deployment using LB url 
+
+       http://<Load balance IP>/SimpleDB/
