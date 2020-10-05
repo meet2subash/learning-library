@@ -8,11 +8,13 @@ and [setup guide](https://www.terraform.io/docs/providers/oci/guides/version-3-u
 * [OCI forums](https://cloudcustomerconnect.oracle.com/resources/9c8fa8f96f/summary)
 * [Github issues](https://github.com/terraform-providers/terraform-provider-oci/issues)
 * [Troubleshooting](https://www.terraform.io/docs/providers/oci/guides/guides/troubleshooting.html)
+
 ## Clone the Module
 Now, you'll want a local copy of this repo. You can make that with the commands:
 git clone https://github.com/oracle-quickstart/oci-arch-tomcat-autonomous.git
     cd oci-arch-tomcat-autonomous
     ls
+
 ## Prerequisites
 First off, you'll need to do some pre-deploy setup.  That's all detailed [here](https://github.com/cloud-partners/oci-prerequisites).
 Secondly, create a `terraform.tfvars` file and populate with the following information:
