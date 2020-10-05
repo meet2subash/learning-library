@@ -71,8 +71,8 @@ Although the diagram shows a private subnet for the Tomcat servers, the scripts 
 
 2.	Stop the tomcat by using below cmd
 
-       sudo systemctl stop tomcat
-
+        sudo systemctl stop tomcat
+     
 3.	Copied SimpleDB.war to `/var/lib/tomcat/webapps/` dir
 
 4.	Added configuration changes to server.xml,web.xml,context.xml files located under `/usr/share/tomcat/conf` dir 
@@ -112,8 +112,8 @@ Add below given config at last in context.xml
 5.	Added lib `tomcat-dbcp-7.0.76.jar` to  `/usr/share/java/`
 
 6.	Start Tomcat server using below given cmd:
-       
-       sudo systemctl start tomcat
+
+        sudo systemctl start tomcat
        
 7.	Test your application deployment at vm level using below given url:
     ````
