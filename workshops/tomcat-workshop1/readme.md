@@ -1,4 +1,3 @@
-Tomcat migration workshop
 # Infrastructure setup for application deployemnt 
 Apache Tomcat® is an open source Java application server. It implements the Java Servlet, JavaServer Pages, Java Expression Language and Java WebSocket technologies.
 ## Terraform Provider for Oracle Cloud Infrastructure
