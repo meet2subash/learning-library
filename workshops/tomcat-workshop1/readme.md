@@ -64,6 +64,47 @@ Although the diagram shows a private subnet for the Tomcat servers, the scripts 
 
 - [Deploy Apache Tomcat connected to an autonomous database](https://docs.oracle.com/en/solutions/deploy-tomcat-adb)
  
+## Data migration from on premise to ATP
+
+1. Go to this link - https://www.oracle.com/in/database/technologies/instant-client/linux-x86-64-downloads.html and download Basic Package (ZIP) and SQL*Plus Package (ZIP)  - 19.8
+	
+2. Unzip both files
+
+3. Set up LD_LIBRARY_PATH
+	
+       export LD_LIBRARY_PATH=/home/oracle/instantclient_19_8
+	
+4. Set up   TNS_ADMIN
+	
+       export TNS_ADMIN=/home/opc/work/instantclient_19_8/network/admin
+
+5. Copy `tnsnames.ora` from Wallet_mydb to `Instantclient_19_8/network/admin/` folder
+
+6. Copy `sqlnet.ora` from Wallet_mydb to `Instantclient_19_8/network/admin/` folder by modifying it as given below
+		
+		WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="<wallet path>/Wallet_mydb")))
+		SSL_SERVER_DN_MATCH=yes
+        
+7. Cmd to login to ATP
+	    
+       ./sqlplus admin/@mydb_medium
+	    SQL*Plus: Release 19.0.0.0.0 - Production on Tue Sep 29 11:15:02 2020
+	    Version 19.8.0.0.0
+	
+	    Copyright (c) 1982, 2020, Oracle.  All rights reserved.
+	
+	    Enter password:
+	    Last Successful login time: Sat Sep 26 2020 00:30:27 +00:00
+	
+	    Connected to:
+	    Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+	    Version 19.5.0.0.0
+	
+	    SQL> 
+        
+Copy data from dump file and past it on instant client console which will create riders user and give DWROLE to it. finally insert riders data to riders table and then do commit on it.
+ 	
+
 
 ## Migration of application from on premise to OCI cloud
 
