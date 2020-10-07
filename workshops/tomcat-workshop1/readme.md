@@ -124,7 +124,9 @@ Copy data from dump file and past it on instant client console which will create
 
 ## Migration of application from on premise to OCI cloud
 
-1.	Do ssh to tomcat01 vm’s (refer to OCI console for vm’s public IP)
+1.	Do ssh to tomcat01 vm’s using the private key which you have specified in `terraform.tfvars` (refer to OCI console for vm’s public IP Compute-> Intances-> tomcat01)
+
+![](./images/vm-pub-ip-check.png)
 
 2.	Stop the tomcat by using below cmd
 
