@@ -38,10 +38,25 @@ compartment_ocid     = "<compartment_ocid>"
 Deploy:
 
     terraform init
+    
+![](./images/terrafrom-init.png)
+
     terraform plan
+
+Enter your ATP DB Name, ATP Name and its password for terraform plan
+
+![](./images/terrafrom-plan.png)
+
+
     terraform apply
 
-## Add confirmation terraform screen here
+Enter your ATP DB Name, ATP Name and its password for terraform apply
+
+![](./images/terrafrom-apply.png)
+
+While executing apply, on confirmation promt please enter `yes` to start infrastructure provisioning.
+
+![](./images/terrafrom-apply-confirmation.png)
 
 ## Testing your deployment
 After the deployment is finished, you can test that your tomcat was deployed correctly and can access the database going to the urls:
