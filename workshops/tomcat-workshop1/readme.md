@@ -178,9 +178,17 @@ Add below given config at last in context.xml
     ````
        http://<IP>:<Port>/SimpleDB/
     ````
+Portal will look like 
+
+![](./images/app-home-page.png)
+    
 8.	Repeat the steps 1-7 for another tomcat vm as well.
 
 9.	Once migration of SimpleDB war file done on both tomcat instance, you can validate end to end deployment using LB url 
     ````
        http://<Load balance IP>/SimpleDB/
     ````
+    
+Portal will look like 
+
+![](./images/app-home-page.png)
